@@ -106,3 +106,28 @@ loginForm.addEventListener("submit", (e) => {
     console.error(error);
   }
 });
+
+/* -------------------------------------------------------------------------- */
+/*                                   쓰로틀링 추가                                  */
+/* -------------------------------------------------------------------------- */
+
+// let timer;
+
+// emailInput.addEventListener("input", function (e) {
+//   if (!timer) {
+//     timer = setTimeout(function () {
+//       timer = null;
+//       let email = e.target.value;
+
+//       if (emailReg(email)) {
+//         state.emailValid = true;
+//         emailInput.classList.remove("is--invalid");
+//         console.log(email);
+//       } else {
+//         state.emailValid = false;
+//         emailInput.classList.add("is--invalid");
+//         console.log(email);
+//       }
+//     }, 500);
+//   }
+// });
