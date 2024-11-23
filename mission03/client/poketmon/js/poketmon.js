@@ -7,6 +7,8 @@ const ul = getNode("ul");
 const button = getNodes("button");
 const list = getNodes("li");
 
+const data = ["#81C4C1", "#FBAC6E", "#85ACD7"];
+
 async function getData(url) {
   const response = await fetch(url);
 
@@ -43,7 +45,7 @@ function renderButton() {
 
     // 버튼 이미지
     getData(url[i]).then((res) => {
-      insertLast(button[i], `<img class="poketmon" src="${res.data.sprites.other["official-artwork"].front_default}" alt=""/>`);
+      insertLast(button[i], `<img class="poketmon" src="${res.data.sprites.other.showdown.front_default}" alt=""/>`);
     });
   }
 }
@@ -60,17 +62,38 @@ async function getCrise() {
   for (let i = 0; i < 3; i++) {
     crise.push(url[i]);
 
-    const res = await getData(url[i]);
-    const cries = res.data.cries;
-    const latestCryUrl = cries.latest;
+    try {
+      const res = await getData(url[i]);
+      const cries = res.data.cries;
+      const latestCryUrl = cries.latest;
 
-    const audio = new Audio(latestCryUrl);
-    audioList.push(audio);
+      const audio = new Audio(latestCryUrl);
+      audioList.push(audio);
+    } catch {
+      console.error("오류가 발생했습니다");
+      alert("에러가 발생했습니다. 지연이 지속되면 문의 주시기 바랍니다. \n📞 010-0000-0000");
+    }
   }
 
   return audioList;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   이미지 변경                                   */
+/* -------------------------------------------------------------------------- */
+
+function setImage(idx) {
+  getData(url[idx - 1]).then((res) => {
+    const image = getNode("img");
+    image.src = `${res.data.sprites.other["official-artwork"].front_default}`;
+
+    console.log(`../assets/bg${idx}.png`);
+    body.style.backgroundColor = data[idx - 1];
+    body.style.backgroundImage = "none";
+    // body.style.backgroundImage = `url("../poketmon/assets/bg0${idx}.png")`;
+    body.style.setProperty("--bg-image", `url("../assets/bg0${idx}.png")`);
+  });
+}
 ul.addEventListener("click", async (e) => {
   const li = e.target.closest("li");
   if (!li) return;
@@ -94,13 +117,3 @@ ul.addEventListener("click", async (e) => {
 
   li.classList.add("is-active");
 });
-
-function setImage(idx) {
-  getData(url[idx - 1]).then((res) => {
-    const image = getNode("img");
-    image.src = `${res.data.sprites.other["official-artwork"].front_default}`;
-    console.log(`../assets/bg${idx}.png`);
-    // body.style.backgroundImage = `../assets/bg${idx}.png`;
-    body.style.backgroundImage = `url("../poketmon/assets/bg${idx}.png")`;
-  });
-}

@@ -11,18 +11,31 @@
 import { getNode, getNodes } from "../lib/index.js";
 import { data } from "./data.js";
 
+/* ----------------------------------- 선언부 ---------------------------------- */
 const body = getNode("body");
 const ul = getNode("ul");
 const image = getNode(".visual img");
 const nickName = getNode(".nickName");
-
 const list = getNodes("li");
 
-console.log(data[0].name);
+function setBgColor(color1, color2) {
+  body.style.background = `linear-gradient(to bottom, ${color1}, ${color2})`;
+}
+
+function setImage(name) {
+  image.src = `./assets/${name}.jpeg`;
+  image.alt = name;
+}
+
+function setNameText(name) {
+  nickName.textContent = name;
+}
+
+// console.log(data[0].name);
 
 ul.addEventListener("click", (e) => {
   const li = e.target.closest("li");
-  console.log(li);
+  console.log(e.target);
   if (!li) return;
 
   const index = li.dataset.index;
@@ -39,16 +52,3 @@ ul.addEventListener("click", (e) => {
   setImage(characterData.name);
   setNameText(characterData.name);
 });
-
-function setBgColor(color1, color2) {
-  body.style.background = `linear-gradient(to bottom, ${color1}, ${color2})`;
-}
-
-function setImage(name) {
-  image.src = `./assets/${name}.jpeg`;
-  image.alt = name;
-}
-
-function setNameText(name) {
-  nickName.textContent = name;
-}
