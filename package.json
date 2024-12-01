@@ -1,0 +1,15 @@
+{
+  "name": "js-homework",
+  "version": "1.0.0",
+  "description": "JS 과제 저장소입니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lit": "^3.2.1"
+  }
+}
