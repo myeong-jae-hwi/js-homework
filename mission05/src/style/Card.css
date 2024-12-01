@@ -1,0 +1,26 @@
+.item {
+  width: 500px;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  background-color: white;
+  border-radius: 8px;
+  cursor: pointer;
+
+  .flex {
+    display: flex;
+  }
+
+  img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+li {
+  list-style-type: none;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-block: 8px;
+}
