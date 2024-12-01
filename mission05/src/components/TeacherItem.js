@@ -14,12 +14,25 @@ class TeacherItem extends LitElement {
     super();
   }
 
+  handleSandData() {
+    this.dispatchEvent(
+      new CustomEvent("getData", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          data: this.name,
+        },
+      })
+    );
+    console.log(`${this.name} click!`);
+  }
+
   render() {
     return html`
       <style>
         ${s}
       </style>
-      <li class="item">
+      <li class="item" @click=${this.handleSandData}>
         <h3 class="name">${this.name}</h3>
         <div class="flex">
           <img src="${this.src}" alt="" />

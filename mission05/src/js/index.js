@@ -1,2 +1,2 @@
 import {} from "/src/components/TeacherList";
-import {} from "/src/components/FaceBook";
+// import {} from "/src/components/FaceBook";
